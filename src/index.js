@@ -166,14 +166,14 @@ export default class extends PureComponent {
 
     // Load the image
     this.image = new Image();
+    this.image.src = this.props.imgSrc;
 
     // Prevent SecurityError "Tainted canvases may not be exported." #70
-    this.image.crossOrigin = "anonymous";
+    this.image.origin = "anonymous";
 
     // Draw the image once loaded
     this.image.onload = () =>
       drawImage({ ctx: this.ctx.grid, img: this.image });
-    this.image.src = this.props.imgSrc;
   };
 
   undo = () => {
@@ -324,7 +324,6 @@ export default class extends PureComponent {
       this.setCanvasSize(this.canvas.grid, width, height);
 
       this.drawGrid(this.ctx.grid);
-      this.drawImage();
       this.loop({ once: true });
     }
     this.loadSaveData(saveData, true);
