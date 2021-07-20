@@ -151,6 +151,10 @@ export default class extends PureComponent {
       this.loadSaveData(this.props.saveData);
     }
 
+    if (prevProps.imgSrc !== this.props.imgSrc) {
+      this.drawImage();
+    }
+
     if (JSON.stringify(prevProps) !== JSON.stringify(this.props)) {
       // Signal this.loop function that values changed
       this.valuesChanged = true;
